@@ -1,28 +1,26 @@
+import cv2
+import numpy
 import os
 
-import matplotlib as plt
-import numpy as np
-import pandas as pd
-
-print('helleo world!')
-msg = 'hello'
-
-msg.capitalize()
-msg.split()
-
-# a = np.array()
-a = 1 + 1
-a = 2 - 1 * 0
-c = 2 * 1 + 2 + 1 * 1 - 1
 os.getcwd()
-print(np.array([2, 4, 12]))
 
-print(pd.__version__)
-print(a)
-print('c is :', c)
+a = numpy.array([3,5])
 
-# print(ddd)
+img = cv2.imread('./Pictures/python.png', cv2.IMREAD_UNCHANGED)
+print('Original Dimensions : ', img.shape)
 
+scale_percent = 200  # percent of original size
+x = img.shape[1]*0.6
+width = int(img.shape[1] * scale_percent / 100)
+height = int(img.shape[0] * scale_percent / 100)
+dim = (width, height)
+# resize image
+resized = cv2.resize(img, dim, interpolation=cv2.INTER_AREA)
 
-def method(a=0):
-    return None
+print('Resized Dimensions : ', resized.shape)
+cv2.namedWindow('Resized image', cv2.WINDOW_NORMAL)
+cv2.imshow("Resized image", resized)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+img = cv2.imread('lena.jpg')
